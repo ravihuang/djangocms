@@ -4,8 +4,8 @@ Build a docker environment with Django 2, Django CMS 3.7, and Postgres 4 running
 ## How to use this docker images
 Create an empty directory (ie. example_dir) and copy inside it the files: Dockerfile, docker-compose.yml and requirements.txt:
 
-example_dir 
-  |
-  |-- Dockerfile
-  |-- docker-compose.yml
-  |-- requirements.txt
+example_dir<br/> 
+|<br/> 
+|-- Dockerfile<br/> 
+|-- docker-compose.yml<br/> 
+|-- requirements.txt<br/> 
