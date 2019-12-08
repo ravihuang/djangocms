@@ -130,4 +130,5 @@ dmypy.json
 
 # Example directories
 data/
-epicasite/
+epicasite/**
+manage.py
