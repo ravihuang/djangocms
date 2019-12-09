@@ -8,7 +8,7 @@ djangocms-postgres-docker\
 &nbsp;&nbsp;|-- Dockerfile\
 &nbsp;&nbsp;|-- docker-compose.yml\
 &nbsp;&nbsp;|-- requirements.txt\
-
+&nbsp;&nbsp;\
 Perform this command to create your Django project (you can change the project name "djangoexample")
 
 ```
