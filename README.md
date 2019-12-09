@@ -5,9 +5,8 @@ Build a docker environment with Django 2, Django CMS 3.7, and Postgres 4 running
 Once you clone this repositorie yo can see the following file structure:
 
 djangocms-postgres-docker\
-&nbsp;&nbsp;|\
 &nbsp;&nbsp;|-- Dockerfile\
-&nbsp;&nbsp;|-- docker-compose.yml\ 
+&nbsp;&nbsp;|-- docker-compose.yml\
 &nbsp;&nbsp;|-- requirements.txt\
 
 Perform this command to create your Django project (you can change the project name "djangoexample")
