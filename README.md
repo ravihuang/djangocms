@@ -33,4 +33,76 @@ djangocms-postgres-docker\
 &nbsp;&nbsp;&nbsp;&nbsp;|-- manage.py\
 &nbsp;&nbsp;&nbsp;&nbsp;|-- requirements.txt\
 &nbsp;\
+In the _home.html_ file copy this code:
+```
+{% load cms_tags sekizai_tags %}
+<html>
+    <head>
+        <title>{% page_attribute "page_title" %}</title>
+        {% render_block "css" %}
+    </head>
+    <body>
+        {% cms_toolbar %}
+        {% load menu_tags %}
+        <ul>
+            {% show_menu 0 100 100 100 %}
+        </ul>
+        {% placeholder "content" %}
+        {% render_block "js" %}
+    </body>
+</html>
+```
+In thr _cms_menu.py_ file copy this code:
+```
+from menus.base import NavigationNode
+from menus.menu_pool import menu_pool
+from django.utils.translation import ugettext_lazy as _
+from cms.menu_bases import CMSAttachMenu
 
+class TestMenu(CMSAttachMenu):
+
+    name = _("test menu")
+
+    def get_nodes(self, request):
+        nodes = []
+        n1 = NavigationNode(_('sample anchor 1'), "/#sa1", 1)
+        n2 = NavigationNode(_('sample anchor 2'), "/#sa2", 2)
+        n3 = NavigationNode(_('sample anchor 3'), "/#sa3", 3)
+
+        nodes.append(n1)
+        nodes.append(n2)
+        nodes.append(n3)
+        return nodes
+
+menu_pool.register_menu(TestMenu)
+```
+Update the _settings.py_ file in this sections:
+```
+ALLOWED_HOSTS = ['*']
+```
+```
+# Change djangoexample by your project name
+INSTALLED_APPS = [
+    'djangocms_admin_style',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'djangoexample',
+    'cms',
+    'menus',
+    'treebeard',
+    'sekizai',
+    'filer',
+    'easy_thumbnails',
+    'mptt',
+    'djangocms_text_ckeditor',
+    'djangocms_link',
+    'djangocms_file',
+    'djangocms_picture',
+    'djangocms_video',
+]
+```
