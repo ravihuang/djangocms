@@ -33,7 +33,7 @@ djangocms-postgres-docker\
 &nbsp;&nbsp;&nbsp;&nbsp;|-- manage.py\
 &nbsp;&nbsp;&nbsp;&nbsp;|-- requirements.txt\
 &nbsp;\
-In the _home.html_ file copy this code:
+###In the _home.html_ file copy this code:
 ```
 {% load cms_tags sekizai_tags %}
 <html>
@@ -52,7 +52,7 @@ In the _home.html_ file copy this code:
     </body>
 </html>
 ```
-In thr _cms_menu.py_ file copy this code:
+###In thr _cms_menu.py_ file copy this code:
 ```
 from menus.base import NavigationNode
 from menus.menu_pool import menu_pool
@@ -76,10 +76,12 @@ class TestMenu(CMSAttachMenu):
 
 menu_pool.register_menu(TestMenu)
 ```
-Update the _settings.py_ file in this sections:
+###Update the _settings.py_ file in this sections:
+Allows any incomming request (for development only)
 ```
 ALLOWED_HOSTS = ['*']
 ```
+Add all the lines you currently don't have in this same order, 
 ```
 # Change djangoexample by your project name
 INSTALLED_APPS = [
@@ -106,6 +108,7 @@ INSTALLED_APPS = [
     'djangocms_video',
 ]
 ```
+Add all the lines you currently don't have in this same order
 ```
 MIDDLEWARE = [
     'cms.middleware.utils.ApphookReloadMiddleware',
@@ -123,6 +126,7 @@ MIDDLEWARE = [
     'cms.middleware.language.LanguageCookieMiddleware',
 ]
 ```
+Update your templates section:
 ```
 TEMPLATES = [
     {
@@ -143,6 +147,7 @@ TEMPLATES = [
     },
 ]
 ```
+Change your current database configuration SQlite based with the new Postgres Based:
 ```
 DATABASES = {
     'default': {
@@ -154,6 +159,7 @@ DATABASES = {
     }
 }
 ```
+Locate your language Settings and update it, also ADD a language code if necessary:
 ```
 LANGUAGES = [
     ('en', 'English'),
@@ -162,6 +168,7 @@ LANGUAGES = [
 
 LANGUAGE_CODE = 'en'
 ```
+At the end of your settings fill add this aditional lines:
 ```
 # Django CMS Settings
 
