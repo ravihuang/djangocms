@@ -33,7 +33,7 @@ djangocms-postgres-docker\
 &nbsp;&nbsp;&nbsp;&nbsp;|-- manage.py\
 &nbsp;&nbsp;&nbsp;&nbsp;|-- requirements.txt\
 &nbsp;\
-###In the _home.html_ file copy this code:
+### In the _home.html_ file copy this code:
 ```
 {% load cms_tags sekizai_tags %}
 <html>
@@ -52,7 +52,7 @@ djangocms-postgres-docker\
     </body>
 </html>
 ```
-###In thr _cms_menu.py_ file copy this code:
+### In thr _cms_menu.py_ file copy this code:
 ```
 from menus.base import NavigationNode
 from menus.menu_pool import menu_pool
@@ -76,7 +76,7 @@ class TestMenu(CMSAttachMenu):
 
 menu_pool.register_menu(TestMenu)
 ```
-###Update the _settings.py_ file in this sections:
+### Update the _settings.py_ file in this sections:
 Allows any incomming request (for development only)
 ```
 ALLOWED_HOSTS = ['*']
@@ -189,4 +189,53 @@ THUMBNAIL_PROCESSORS = (
     'filer.thumbnail_processors.scale_and_crop_with_subject_location',
     'easy_thumbnails.processors.filters'
 )
+```
+
+### Update your urls.py
+Change your currently lines by:
+```
+from django.contrib import admin
+from django.urls import path, re_path
+from django.conf.urls import url, include
+from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    re_path(r'^', include('cms.urls'))
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+```
+## Running the docker images
+Ensure you have installed docker-compose and you are in the root of your project, then:\
+For clear before docker execution run:
+```
+docker-compose down
+docker system prune -f
+docker volume prune -f
+```
+Then, run again:
+```
+docker-compose up -d
+```
+## Latest settings in your new docker container
+Look at your new web docker container, it is similar to: djangocms-postgres-docker_web_1
+```
+docker ps
+```
+Then, enter in this container by:
+```
+# Put here your name container
+docker exec -it djangocms-postgres-docker_web_1 /bin/bash
+```
+If not errors, perform the following commands:
+```
+python manage.py migrate
+```
+Create a superuser with your preference data
+```
+python manage.py createsuperuser
+```
+Test your new Django project in the browser:
+```
+localhost:8088
 ```
