@@ -24,4 +24,4 @@ docker-compose run web python manage.py migrate
 ```
 docker-compose up -d
 ```
-login: http://<your-ip>:8194
+login: http://your-ip:8194
