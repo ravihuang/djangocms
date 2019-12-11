@@ -3,14 +3,21 @@ version: '3'
 services:
   db:
     image: postgres
+    container_name: db
     volumes:
-      - ./data:/var/lib/postgresql/data
+      - postgres:/var/lib/postgresql/data
   web:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
+    container_name: web
     volumes:
-      - .:/code
+      - .:/srv
     ports:
-      - "8088:8000"
+      - "8094:8000"
     depends_on:
       - db
+    links:
+      - db
+
+volumes:
+    postgres:
